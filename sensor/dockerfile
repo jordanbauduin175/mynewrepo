@@ -1,0 +1,8 @@
+FROM arm32v7/alpine:3.10
+
+RUN apk add --no-cache curl ca-certificates
+RUN apk update && apk add python3 && apk add py3-rpigpio 
+#RUN apk update && apk add python3 
+COPY . /code
+ENTRYPOINT ["python3"]
+CMD ["/code/water.py"]

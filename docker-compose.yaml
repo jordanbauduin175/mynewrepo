@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  water:
+   privileged: true
+   restart: always
+   build:
+     context: ./sensor
+     dockerfile: dockerfile
+   links:
+           - telegraf
+   volumes:
+           - data-volume1:/code
+  
+  telegraf:
+   restart: always
+   build:
+     context: ./telegraf
+     dockerfile: dockerfile
+   
+   volumes:
+           - data-volume1:/code
+
+volumes:
+  data-volume1:
